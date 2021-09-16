@@ -4,6 +4,7 @@
     <title>First Lab</title>
 </head>
 <body>
+    <a href="bonus.html">BONUS</a>
     <h1>Hitesh Reddy Tirumala Reddy</h1> 
 <h6>My Favorite place is Hyderabad </h6>
         <p>Hyderabad is a city which is located in <b>telangana</b> and it gives us great <b>opportunity</b> for students.In Hyderabad they are <b>wide range of tech industries.</b></p>
@@ -56,5 +57,37 @@
               </tr>
             
           </table>
+          <hr>
+          <h1>Code Display - Check whether a graph is bipartite</h1>
+      <blockquote>In the mathematical field of graph theory, a bipartite graph (or bigraph) is a graph whose vertices can be divided into two disjoint and independent sets {\displaystyle U}U and {\displaystyle V}V such that every edge connects a vertex in {\displaystyle U}U to one in {\displaystyle V}V.
+           Vertex sets {\displaystyle U}U and {\displaystyle V}V are usually called the parts of the graph. 
+           Equivalently, a bipartite graph is a graph that does not contain any odd-length cycles.<a href="https://en.wikipedia.org/wiki/Bipartite_graph">Click Here</a>
+        <pre>
+                int n;
+                vector<vector<int>> adj;
+                vector<int> side(n, -1);
+                bool is_bipartite = true;
+                queue<int> q;
+                for (int st = 0; st < n; ++st) {
+                    if (side[st] == -1) {
+                        q.push(st);
+                        side[st] = 0;
+                        while (!q.empty()) {
+                            int v = q.front();
+                            q.pop();
+                            for (int u : adj[v]) {
+                                if (side[u] == -1) {
+                                    side[u] = side[v] ^ 1;
+                                    q.push(u);
+                                } else {
+                                    is_bipartite &= side[u] != side[v];
+                                }
+                            }
+                        }
+                    }
+                }
+
+                cout << (is_bipartite ? "YES" : "NO") << endl;
+        </pre>
 </body>
 </html>
